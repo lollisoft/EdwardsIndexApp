@@ -1,6 +1,6 @@
 format 224
 "EdwardsIndexApp"
-  revision 3
+  revision 4
   modified_by 2 "Lothar"
 
 
@@ -47,7 +47,7 @@ format 224
   ncouples 4
   key "gxmi path" value "Q:/Develop/Projects/EdwardsIndexApp/EdwardsIndexApp.xmi"
   key "gxmi gen views" value "no"
-  key "gxmi encoding" value "windows-1252"
+  key "gxmi encoding" value "ISO-8859-1"
   key "gxmi taggedvalue" value "1"
   package_ref 128002 // Edwards Index App
 end
