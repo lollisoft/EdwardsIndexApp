@@ -1,0 +1,137 @@
+<?xml version="1.0"  encoding="windows-1252"?>
+<XMI xmi.version="1.2" xmlns:UML="org.omg.xmi.namespace.UML">
+<XMI.header>
+	<XMI.documentation>
+		<XMI.exporter>Bouml</XMI.exporter>
+		<XMI.exporterVersion>1.4.6</XMI.exporterVersion>
+	</XMI.documentation>
+	<XMI.metamodel XMI.name="UML" XMI.version="1.4"/>
+</XMI.header>
+<XMI.content>
+	<UML:Model name="EdwardsIndexApp" xmi.id="BOUML_0x3eca68">
+		<UML:Namespace.ownedElement>
+			<UML:Package xmi.id="BOUML_0xb9fc90" name ="EdwardsIndexApp">
+				<UML:Namespace.ownedElement>
+					<UML:Class name="IndexMarker" xmi.id="BOUML_0xb9a848" visibility="public" isAbstract="false" isActive="false" >
+						<UML:Classifier.feature>
+							<UML:Attribute name="AlphanumericTag" xmi.id="BOUML_0xb9d430" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_0"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+							<UML:Attribute name="DateCreated" xmi.id="BOUML_0xb99350" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_1"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+						</UML:Classifier.feature>
+					</UML:Class>
+					<UML:Association xmi.id="BOUML_0xb99bd8">
+						<UML:Association.connection>
+							<UML:AssociationEnd visibility="private" ownerScope="instance" name="" aggregation="none" isOrdered="false" isNavigable="true" type="BOUML_0xb9a008">
+								<UML:AssociationEnd.participant>
+									<UML:Class xmi.idref="BOUML_0xb9a008"/>
+								</UML:AssociationEnd.participant>
+							</UML:AssociationEnd>
+							<UML:AssociationEnd visibility="private" ownerScope="instance" name="" aggregation="aggregate" isOrdered="false" isNavigable="true" type="BOUML_0xb9a848">
+								<UML:AssociationEnd.participant>
+									<UML:Class xmi.idref="BOUML_0xb9a848"/>
+								</UML:AssociationEnd.participant>
+							</UML:AssociationEnd>
+						</UML:Association.connection>
+					</UML:Association>
+					<UML:Association xmi.id="BOUML_0xbaa090">
+						<UML:Association.connection>
+							<UML:AssociationEnd visibility="private" ownerScope="instance" name="" aggregation="none" isOrdered="false" isNavigable="true" type="BOUML_0xb9e1d8">
+								<UML:AssociationEnd.participant>
+									<UML:Class xmi.idref="BOUML_0xb9e1d8"/>
+								</UML:AssociationEnd.participant>
+							</UML:AssociationEnd>
+							<UML:AssociationEnd visibility="private" ownerScope="instance" name="" aggregation="aggregate" isOrdered="false" isNavigable="true" type="BOUML_0xb9a848">
+								<UML:AssociationEnd.participant>
+									<UML:Class xmi.idref="BOUML_0xb9a848"/>
+								</UML:AssociationEnd.participant>
+							</UML:AssociationEnd>
+						</UML:Association.connection>
+					</UML:Association>
+					<UML:Class name="BookCoordinate" xmi.id="BOUML_0xb9a008" visibility="public" isAbstract="false" isActive="false" >
+						<UML:Classifier.feature>
+							<UML:Attribute name="BookName" xmi.id="BOUML_0x3e7f40" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_0"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+							<UML:Attribute name="Page" xmi.id="BOUML_0xba9918" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_2"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+							<UML:Attribute name="Subject" xmi.id="BOUML_0xba58f0" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_0"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+							<UML:Attribute name="Chapter" xmi.id="BOUML_0xba5460" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_2"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+							<UML:Attribute name="Verse" xmi.id="BOUML_0xb9ff88" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_2"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+						</UML:Classifier.feature>
+					</UML:Class>
+					<UML:Class name="Annotation" xmi.id="BOUML_0xb9e1d8" visibility="public" isAbstract="false" isActive="false" >
+						<UML:Classifier.feature>
+							<UML:Attribute name="Text" xmi.id="BOUML_0xb9c378" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_0"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+							<UML:Attribute name="DateCreated" xmi.id="BOUML_0xba8d30" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_1"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+						</UML:Classifier.feature>
+					</UML:Class>
+					<UML:Class name="Theme" xmi.id="BOUML_0xba2068" visibility="public" isAbstract="false" isActive="false" >
+						<UML:Classifier.feature>
+							<UML:Attribute name="Name" xmi.id="BOUML_0xba5668" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_0"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+							<UML:Attribute name="Category" xmi.id="BOUML_0xba5558" visibility="private" ownerScope="instance">
+								<UML:StructuralFeature.type>
+									<UML:DataType xmi.idref="BOUML_datatype_0"/>
+								</UML:StructuralFeature.type>
+							</UML:Attribute>
+						</UML:Classifier.feature>
+					</UML:Class>
+					<UML:Association xmi.id="BOUML_0xba5778">
+						<UML:Association.connection>
+							<UML:AssociationEnd visibility="private" ownerScope="instance" name="" aggregation="none" isOrdered="false" isNavigable="true" type="BOUML_0xb9e1d8">
+								<UML:AssociationEnd.participant>
+									<UML:Class xmi.idref="BOUML_0xb9e1d8"/>
+								</UML:AssociationEnd.participant>
+							</UML:AssociationEnd>
+							<UML:AssociationEnd visibility="private" ownerScope="instance" name="" aggregation="aggregate" isOrdered="false" isNavigable="true" type="BOUML_0xba2068">
+								<UML:AssociationEnd.participant>
+									<UML:Class xmi.idref="BOUML_0xba2068"/>
+								</UML:AssociationEnd.participant>
+							</UML:AssociationEnd>
+						</UML:Association.connection>
+					</UML:Association>
+				<!-- for pack EdwardsIndexApp-->
+				</UML:Namespace.ownedElement>
+			</UML:Package>
+			<UML:DataType xmi.id="BOUML_datatype_1" name = "datetime" visibility="private" isRoot="false" isLeaf="false" isAbstract="false"/>
+			<UML:DataType xmi.id="BOUML_datatype_2" name = "int" visibility="private" isRoot="false" isLeaf="false" isAbstract="false"/>
+			<UML:DataType xmi.id="BOUML_datatype_0" name = "string" visibility="private" isRoot="false" isLeaf="false" isAbstract="false"/>
+		</UML:Namespace.ownedElement>
+	</UML:Model>
+</XMI.content>
+</XMI>
