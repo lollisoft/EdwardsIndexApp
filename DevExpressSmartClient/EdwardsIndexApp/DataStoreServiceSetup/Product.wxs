@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<!-- 
+	Please specify application parameters for the Product Id (ProductCode), UpgradeCode (UpgradeCode) and Version (ProductVersion).
+	Values in brackets are the parameter names. Do never change the UpgradeCode! If you increase the version, please create a new
+	ProductCode.
+	-->
+	<Product Id="73C62F30-3C53-46DF-B892-405DB349402F" Name="EdwardsIndexAppService" Language="1033" Version="1.0.0.0" Manufacturer="Lollisoft Software Development" UpgradeCode="E96C4AB2-1DF6-4DA3-99DD-DAB7517334B0">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="EdwardsIndexAppService" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="EdwardsIndexAppService" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">			
+			<Component Id="ProductComponent" Guid="{D5D256B4-9D03-4DDF-94EC-E984C3B13009}">
+				<!--<File Id="Insert dll name" Name="Insert dll name again" Source="Insert path to dll" Vital="yes" KeyPath="no" DiskId="1"/>-->
+        <File Id="EdwardsIndexAppDataStoreService.exe" Name="EdwardsIndexAppDataStoreService.exe" Source="..\bin\EdwardsIndexAppDataStoreService.exe" Vital="yes" KeyPath="yes"/>
+        <File Id="EdwardsIndexAppCommon.dll" Name="EdwardsIndexAppCommon.dll" Source="..\bin\EdwardsIndexAppCommon.dll" Vital="yes" KeyPath="no"/>
+        <File Id="Lollisoft.Common.Logging.dll" Name="Lollisoft.Common.Logging.dll" Source="..\bin\Lollisoft.Common.Logging.dll" Vital="yes" KeyPath="no"/>
+        <File Id="Lollisoft.DatabaseLogging.ServiceInterfaces.dll" Name="Lollisoft.DatabaseLogging.ServiceInterfaces.dll" Source="..\bin\Lollisoft.DatabaseLogging.ServiceInterfaces.dll" Vital="yes" KeyPath="no"/>
+        <File Id="Microsoft.Practices.CompositeUI.dll" Name="Microsoft.Practices.CompositeUI.dll" Source="..\bin\Microsoft.Practices.CompositeUI.dll" Vital="yes" KeyPath="no"/>
+        <File Id="Microsoft.Practices.ObjectBuilder.dll" Name="Microsoft.Practices.ObjectBuilder.dll" Source="..\bin\Microsoft.Practices.ObjectBuilder.dll" Vital="yes" KeyPath="no"/>
+        <File Id="EdwardsIndexAppDataStoreService.exe.config" Name="EdwardsIndexAppDataStoreService.exe.config" Source="..\bin\EdwardsIndexAppDataStoreService.exe.config" Vital="yes" KeyPath="no"/>
+        <File Id="DevExpress.Data.v15.2.dll" Name="DevExpress.Data.v15.2.dll" Source="..\bin\DevExpress.Data.v15.2.dll" Vital="yes" KeyPath="no"/>
+        <File Id="DevExpress.Xpo.v15.2.dll" Name="DevExpress.Xpo.v15.2.dll" Source="..\bin\DevExpress.Xpo.v15.2.dll" Vital="yes" KeyPath="no"/>
+        <File Id="Microsoft.IdentityModel.dll" Name="Microsoft.IdentityModel.dll" Source="..\..\..\Lib\Microsoft.IdentityModel.dll" Vital="yes" KeyPath="no"/>
+        <File Id="System.Data.SQLite" Name="System.Data.SQLite.dll" Source="..\..\..\Lib\System.Data.SQLite.32Bit.dll" Vital="yes" KeyPath="no"/>
+        <File Id="System.Data.SQLite.32Bit" Name="System.Data.SQLite.32Bit.dll" Source="..\..\..\Lib\System.Data.SQLite.32Bit.dll" Vital="yes" KeyPath="no"/>
+        <File Id="System.Data.SQLite.64Bit" Name="System.Data.SQLite.64Bit.dll" Source="..\..\..\Lib\System.Data.SQLite.64Bit.dll" Vital="yes" KeyPath="no"/>
+        <ServiceInstall
+					Id="ServiceInstaller"
+					Type="ownProcess"
+					Vital="yes"
+					Name="EdwardsIndexAppService"
+					DisplayName="EdwardsIndexAppService"
+					Description="This datastore service provides the EdwardsIndexApp application data"
+					Start="auto"
+					Account="LocalSystem"
+					ErrorControl="ignore"
+					Interactive="no"
+              >
+				</ServiceInstall>
+				<ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall" Name="EdwardsIndexAppService" Wait="yes" />
+			</Component>
+
+		</ComponentGroup>
+	</Fragment>
+</Wix>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="8FF8064F-641C-4ACA-B197-503B19E2F525" Name="lbDMFStsService" Language="1033" Version="1.0.0.2" Manufacturer="Lollisoft Software Development" UpgradeCode="A27EB676-275D-43DD-88DC-325B9B8D0272">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    
+		<Feature Id="ProductFeature" Title="lbDMFStsService" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="lbDMFStsService" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">			
+			<Component Id="ProductComponent" Guid="{47BA217A-D0F0-4FED-AA5E-5BD4D80C5D28}">
+				<!--<File Id="Insert dll name" Name="Insert dll name again" Source="Insert path to dll" Vital="yes" KeyPath="no" DiskId="1"/>-->
+        <File Id="StsServiceHost.exe" Name="StsServiceHost.exe" Source="..\bin\StsServiceHost.exe" Vital="yes" KeyPath="yes" DiskId="1"/>
+        <File Id="StsServiceHost.exe.config" Name="StsServiceHost.exe.config" Source="..\bin\StsServiceHost.exe.config" Vital="yes" DiskId="1"/>
+        <File Id="StsService.dll" Name="StsService.dll" Source="..\bin\StsService.dll" Vital="yes" DiskId="1"/>
+        <File Id="StsServiceInterfaces.dll" Name="StsServiceInterfaces.dll" Source="..\bin\StsServiceInterfaces.dll" Vital="yes" DiskId="1"/>
+        <File Id="StsSecurity.dll" Name="StsSecurity.dll" Source="..\bin\StsSecurity.dll" Vital="yes" DiskId="1"/>
+        <File Id="DevExpress.Data.v15.2.dll" Name="DevExpress.Data.v15.2.dll" Source="..\bin\DevExpress.Data.v15.2.dll" Vital="yes" DiskId="1"/>
+        <File Id="DevExpress.Xpo.v15.2.dll" Name="DevExpress.Xpo.v15.2.dll" Source="..\bin\DevExpress.Xpo.v15.2.dll" Vital="yes" DiskId="1"/>
+        <File Id="System.Data.SQLite.dll" Name="System.Data.SQLite.dll" Source="..\..\..\Lib\System.Data.SQLite.dll" Vital="yes" DiskId="1"/>
+        <File Id="System.Data.SQLite.32Bit.dll" Name="System.Data.SQLite.32Bit.dll" Source="..\..\..\Lib\System.Data.SQLite.32Bit.dll" Vital="yes" DiskId="1"/>
+        <File Id="System.Data.SQLite.64Bit.dll" Name="System.Data.SQLite.64Bit.dll" Source="..\..\..\Lib\System.Data.SQLite.64Bit.dll" Vital="yes" DiskId="1"/>
+        <ServiceInstall
+					Id="ServiceInstaller"
+					Type="ownProcess"
+					Vital="yes"
+					Name="lbDMFStsService"
+					DisplayName="lbDMFStsService"
+					Description="Provides a STS for lbDMF business application"
+					Start="auto"
+					Account="LocalSystem"
+					ErrorControl="ignore"
+					Interactive="no"
+              >
+				</ServiceInstall>
+				<ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall" Name="lbDMFStsService" Wait="yes" />
+			</Component>
+
+		</ComponentGroup>
+	</Fragment>
+</Wix>

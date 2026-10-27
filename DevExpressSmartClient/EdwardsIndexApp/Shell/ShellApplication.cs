@@ -1,0 +1,302 @@
+//===============================================================================
+// Microsoft patterns & practices
+// CompositeUI Application Block
+//===============================================================================
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+// FITNESS FOR A PARTICULAR PURPOSE.
+//===============================================================================
+
+using System;
+//using EdwardsIndexAppModule.Constants;
+using CABDevExpress;
+using CABDevExpress.UIElements;
+using CABDevExpress.Workspaces;
+using DevExpress.Skins;
+using DevExpress.UserSkins;
+using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraEditors;
+using Microsoft.Practices.CompositeUI;
+using Microsoft.Practices.CompositeUI.WinForms;
+using Microsoft.Practices.CompositeUI.Services;
+using System.Security.Principal;
+using EdwardsIndexAppSecurity.Authorization;
+using System.IO;
+using System.Diagnostics;
+using EdwardsIndexAppSecurity;
+using ShellCommon;
+using Lollisoft.DatabaseLogging.ServiceInterfaces;
+using Lollisoft.Common.Logging.Interfaces;
+
+namespace EdwardsIndexAppShell
+{
+    public class lbDMFManagerAuthenticationService : IAuthenticationService
+    {
+
+
+        WorkItem _rootWorkItem;
+
+        public lbDMFManagerAuthenticationService(WorkItem rootWorkItem)
+        {
+            _rootWorkItem = rootWorkItem;
+			
+
+        }
+
+        public void Authenticate()
+        {
+		
+			LoginForm loginForm = new LoginForm();
+
+			loginForm.OnValidateLogin += ValidateLogin;
+
+            loginForm.OnRequestAccount += OnRequestAccount;
+
+            loginForm.OnResetPassword += OnResetPassword;
+
+            if (loginForm.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+            {
+                throw new Exception("Authentification cancelled");
+            }
+
+}
+
+        private bool OnResetPassword()
+        {
+            var resetPasswordForm = new ResetPasswordForm();
+
+            if (resetPasswordForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                IResetPasswordService resetPasswordService = _rootWorkItem.Services.Get<IResetPasswordService>(true);
+
+                return resetPasswordService.ResetPassword(resetPasswordForm.IsResetRequest, resetPasswordForm.IsResetComplete, resetPasswordForm.LoginName, resetPasswordForm.EMail, resetPasswordForm.Token, resetPasswordForm.Password);
+            }
+
+            return false;
+        }
+
+        bool OnRequestAccount()
+        {
+            var requestAccountForm = new RequestAccountForm();
+
+            if (requestAccountForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                IRequestAccountService requestAccountService = _rootWorkItem.Services.Get<IRequestAccountService>(true);
+
+                return requestAccountService.RequestAccount(requestAccountForm.UserId, requestAccountForm.EMail, "EdwardsIndexApp");
+            }
+
+            return false;
+        }
+		
+		bool ValidateLogin(string user, string pass)
+        {
+
+            ISecureCredentials cred = _rootWorkItem.Services.Get<ISecureCredentials>(true);
+
+            cred.SetCredentials(user, pass);
+
+			Trace.TraceInformation("EdwardsIndexApp started");
+
+            return user != "";
+
+        }
+    }
+
+#if UseRibbonForm
+    public class EdwardsIndexAppShellApplication : XtraFormApplication<WorkItem, EdwardsIndexAppShellRibbonForm>
+#else
+    public class EdwardsIndexAppShellApplication : XtraFormApplication<WorkItem, EdwardsIndexAppShellForm>
+#endif
+    {
+        [STAThread]
+        public static void Main()
+        {
+            BonusSkins.Register();
+            OfficeSkins.Register();
+            SkinManager.EnableFormSkins();
+
+			try
+            {
+                new EdwardsIndexAppShellApplication().Run();
+            }
+            catch (Exception e)
+            {
+
+            }
+		}
+
+		
+        protected override void AddServices()
+        {
+            base.AddServices();
+
+            RootWorkItem.Services.Remove<IAuthenticationService>();
+
+			try
+            {
+				lbDMFManagerAuthenticationService lbDMFManagerAuthenticationService = new lbDMFManagerAuthenticationService(RootWorkItem);
+
+				RootWorkItem.Services.Add<IAuthenticationService>(lbDMFManagerAuthenticationService);
+
+                SecureCredentials cred = new SecureCredentials();
+
+                RootWorkItem.Services.Add<ISecureCredentials>(cred);
+				
+                LoggingServiceTracer logging = new LoggingServiceTracer(RootWorkItem);
+
+                RootWorkItem.Services.Add<ILoggingService>(logging);
+				
+                ScreenCaptureService capture = new ScreenCaptureService();
+
+                RootWorkItem.Services.Add<IScreenCaptureService>(capture);
+
+                DesignCollaboration designCollaboration = new DesignCollaboration();
+
+                RootWorkItem.Services.Add<IDesignCollaboration>(designCollaboration);
+
+                ChangePasswordService changePasswordService = new ChangePasswordService(RootWorkItem);
+
+                RootWorkItem.Services.Add<IChangePasswordService>(changePasswordService);
+
+                RequestAccountService requestAccountService = new RequestAccountService(RootWorkItem);
+
+                RootWorkItem.Services.Add<IRequestAccountService>(requestAccountService);
+
+                ResetPasswordService resetPasswordService = new ResetPasswordService(RootWorkItem);
+
+                RootWorkItem.Services.Add<IResetPasswordService>(resetPasswordService);
+
+/*
+				// Move after user login and allow user account to log.
+				string loggingUser = "toBeDefined";
+				string loggingPass = "toBeDefined";
+                cred.SetCredentials(loggingUser, loggingPass);
+                Trace.TraceInformation("EdwardsIndexApp started");
+*/
+			}
+            catch (Exception e)
+            {
+                XtraMessageBox.Show("Required authentification service failed to initialize. Message:\n\n" + e.Message, "Error");
+                Trace.WriteLine("Required authentification service failed to initialize: " + e.Message);
+                throw;
+            }
+		}
+		
+        // This method is called just after your shell has been created (the root work item
+        // also exists). Here, you might want to:
+        //   - Attach UIElementManagers
+        //   - Register the form with a name.
+        //   - Register additional workspaces (e.g. a named WindowWorkspace)
+        protected override void AfterShellCreated()
+        {
+            base.AfterShellCreated();
+
+            XtraTabbedMdiWorkspace ContentWorkspace = new XtraTabbedMdiWorkspace(Shell);
+            RootWorkItem.Items.Add(ContentWorkspace, WorkspaceNames.ShellContentWorkspace);
+         
+            //RootWorkItem.Items.Add(new MdiWorkspace(Shell), WorkspaceNames.ShellContentWorkspace);
+            RootWorkItem.Items.Add(Shell.NavBarWorkspace, WorkspaceNames.ShellNavBarWorkspace);
+            RootWorkItem.Items.Add(Shell.DockManagerWorkspace, WorkspaceNames.DockManagerWorkspace);
+
+#if UseRibbonForm
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.Ribbon, Shell.Ribbon);
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.MainMenu, Shell.homePage);
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.MainStatus, Shell.mainStatusBar);
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.RibbonApplicationMenu, new
+                RibbonApplicationMenuUIAdapter(Shell.applicationMenu));
+
+            RibbonPageGroup ribbonGroup = new RibbonPageGroup("File");
+            RootWorkItem.UIExtensionSites[ExtensionSiteNames.MainMenu].Add<RibbonPageGroup>(ribbonGroup);
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.File, ribbonGroup);
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.RibbonPageHeader, new
+                RibbonPageHeaderUIAdapter(Shell.Ribbon.PageHeaderItemLinks));
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.RibbonQuickAccessToolbar, new
+                RibbonQuickAccessToolbarUIAdapter(Shell.Ribbon.Toolbar));
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.RibbonAppMenuBottomPane, new
+                RibbonAppMenuBottomPaneSimpleButtonUIAdapter(RootWorkItem, Shell.applicationMenu));
+
+            EdwardsIndexAppRibbonSkins.Add(RootWorkItem);
+            //EdwardsIndexAppRibbonWindows.Add(RootWorkItem, Shell.xtraTabbedMdiManager, Shell);
+            EdwardsIndexAppRibbonWindows.Add(RootWorkItem, ContentWorkspace);
+#else
+			RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.MainMenu, Shell.mainMenuBar);
+			RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.MainStatus, Shell.mainStatusBar);
+			RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.FileDropDown, Shell.barSubItemFile);
+			RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.File, new BarItemWrapper(Shell.mainMenuBar.ItemLinks, Shell.barSubItemFile));
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.SkinsToolBar, Shell.skinsBar);
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.ToolBar, Shell.mainBar);
+            RootWorkItem.UIExtensionSites.RegisterSite(ExtensionSiteNames.WindowToolBar, Shell.windowToolBar);
+            
+            // There are two ways to add skins to the EdwardsIndexApp demo.
+            // 1) SkinMenu: Bypasses the CAB framework and directly adds and
+            //    manipulates the menu items. The SkinMenu is standard .NET 
+            //    functionality and is more efficient and easier to understand.
+            // 2) EdwardsIndexAppDynamicSkins: Uses the event broker to handle both the
+            //    menu Popup event and the handling of the menu item click. This
+            //    allows both dynamic menu item creation as well as more adherence
+            //    to the CAB decoupled philosophy. It does not provide any
+            //    additional functionality.
+            //
+            // SkinMenu and EdwardsIndexAppDynamicSkins are functionally equivalent.
+            // The two methods give the developer a choice on how closely to
+            // follow the CAB philosophy.
+            //
+            // To change between the two swap the comments on the following two
+            // lines of code. The two lines can also both be uncommented and two
+            // working skin menus will appear.
+            RootWorkItem.UIExtensionSites[ExtensionSiteNames.MainMenu].Add(new SkinMenu(Shell.mainMenuBar));
+            //EdwardsIndexAppDynamicSkins.Skins.AddSkins(RootWorkItem);
+            RootWorkItem.UIExtensionSites[ExtensionSiteNames.MainMenu].Add(new WindowMenu(Shell.mainMenuBar, ContentWorkspace,  RootWorkItem));
+#endif
+            UIElementBuilder.LoadFromConfig(RootWorkItem);
+        }
+
+        #region HandleException
+
+        public override void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception ex = e.ExceptionObject as Exception;
+
+            if (ex != null)
+            {
+                XtraMessageBox.Show(BuildExceptionString(ex));
+            }
+            else
+            {
+                XtraMessageBox.Show("An Exception has occured, unable to get details");
+            }
+
+            Environment.Exit(0);
+        }
+
+        private static string BuildExceptionString(Exception exception)
+        {
+            string errMessage = string.Empty;
+
+            errMessage += exception.Message + Environment.NewLine + exception.StackTrace;
+
+            while (exception.InnerException != null)
+            {
+                errMessage += BuildInnerExceptionString(exception.InnerException);
+                exception = exception.InnerException;
+            }
+
+            return errMessage;
+        }
+
+        private static string BuildInnerExceptionString(Exception innerException)
+        {
+            string errMessage = string.Empty;
+
+            errMessage += Environment.NewLine + " InnerException ";
+            errMessage += Environment.NewLine + innerException.Message + Environment.NewLine + innerException.StackTrace;
+
+            return errMessage;
+        }
+
+        #endregion
+    }
+}

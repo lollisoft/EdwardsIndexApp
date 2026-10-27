@@ -1,0 +1,511 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F5E262B3-2535-4579-B2A6-3FC5BD45EABB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EdwardsIndexAppModule</RootNamespace>
+    <AssemblyName>EdwardsIndexAppModule</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UseRibbonForm;USE_XPO</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\</OutputPath>
+    <DefineConstants>TRACE;UseRibbonForm;USE_XPO</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+
+    <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v15.2.Extensions, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v15.2.UI, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
+    </Reference>
+
+    <Reference Include="ShellCommon">
+      <HintPath>..\bin\ShellCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MaskedTextProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GenericDataLayoutCRUDFormView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GenericDataLayoutCRUDFormView.Designer.cs">
+      <DependentUpon>GenericDataLayoutCRUDFormView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\CommandNames.cs" />
+    <Compile Include="Constants\EventNames.cs" />
+    <Compile Include="Constants\ExtensionSiteNames.cs" />
+    <Compile Include="Constants\SmartPartNames.cs" />
+    <Compile Include="Constants\WorkItemStates.cs" />
+    <Compile Include="Constants\WorkspaceNames.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+
+    <Compile Include="Services\IndexMarkerQueueService.cs" />
+    
+    <Compile Include="Services\BookCoordinateQueueService.cs" />
+    
+    <Compile Include="Services\AnnotationQueueService.cs" />
+    
+    <Compile Include="Services\ThemeQueueService.cs" />
+    
+    <Compile Include="Services\IndexMarkerService.cs" />
+
+    <Compile Include="Services\BookCoordinateService.cs" />
+
+    <Compile Include="Services\AnnotationService.cs" />
+
+    <Compile Include="Services\ThemeService.cs" />
+
+
+
+
+    <Compile Include="WorkItems\EdwardsIndexApp\AboutEdwardsIndexAppView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\EdwardsIndexApp\AboutEdwardsIndexAppView.Designer.cs">
+      <DependentUpon>AboutEdwardsIndexAppView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\EdwardsIndexApp\EdwardsIndexAppWorkItem.cs" />
+	
+    <Compile Include="WorkItems\EdwardsIndexApp\StatisticsBarView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\EdwardsIndexApp\StatisticsBarView.Designer.cs">
+      <DependentUpon>StatisticsBarView.cs</DependentUpon>
+    </Compile>
+	
+    <Compile Include="Reports\IReport.cs"/>
+
+    <Compile Include="Reports\IndexMarkerReportService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\IndexMarkerReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\IndexMarkerReport.Designer.cs">
+      <DependentUpon>IndexMarkerReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\IndexMarker\IndexMarkersView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\IndexMarker\IndexMarkersView.Designer.cs">
+      <DependentUpon>IndexMarkersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\IndexMarker\IndexMarkerPerFormGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\IndexMarker\IndexMarkerPerFormGridView.Designer.cs">
+      <DependentUpon>IndexMarkerPerFormGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\EdwardsIndexApp\IndexMarkerCRUDController.cs" />
+    <Compile Include="WorkItems\IndexMarker\IndexMarkerCRUDWorkItem.cs" />
+    <Compile Include="WorkItems\IndexMarker\IndexMarkerSimpleCRUDFormView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\IndexMarker\IndexMarkerSimpleCRUDFormView.Designer.cs">
+      <DependentUpon>IndexMarkerSimpleCRUDFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\IndexMarker\IndexMarkerLayoutCRUDFormView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\IndexMarker\IndexMarkerLayoutCRUDFormView.Designer.cs">
+      <DependentUpon>IndexMarkerLayoutCRUDFormView.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="Reports\BookCoordinateReportService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\BookCoordinateReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\BookCoordinateReport.Designer.cs">
+      <DependentUpon>BookCoordinateReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\BookCoordinate\BookCoordinatesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\BookCoordinate\BookCoordinatesView.Designer.cs">
+      <DependentUpon>BookCoordinatesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\BookCoordinate\BookCoordinatePerFormGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\BookCoordinate\BookCoordinatePerFormGridView.Designer.cs">
+      <DependentUpon>BookCoordinatePerFormGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\EdwardsIndexApp\BookCoordinateCRUDController.cs" />
+    <Compile Include="WorkItems\BookCoordinate\BookCoordinateCRUDWorkItem.cs" />
+    <Compile Include="WorkItems\BookCoordinate\BookCoordinateSimpleCRUDFormView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\BookCoordinate\BookCoordinateSimpleCRUDFormView.Designer.cs">
+      <DependentUpon>BookCoordinateSimpleCRUDFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\BookCoordinate\BookCoordinateLayoutCRUDFormView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\BookCoordinate\BookCoordinateLayoutCRUDFormView.Designer.cs">
+      <DependentUpon>BookCoordinateLayoutCRUDFormView.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="Reports\AnnotationReportService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\AnnotationReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\AnnotationReport.Designer.cs">
+      <DependentUpon>AnnotationReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\Annotation\AnnotationsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\Annotation\AnnotationsView.Designer.cs">
+      <DependentUpon>AnnotationsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\Annotation\AnnotationPerFormGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\Annotation\AnnotationPerFormGridView.Designer.cs">
+      <DependentUpon>AnnotationPerFormGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\EdwardsIndexApp\AnnotationCRUDController.cs" />
+    <Compile Include="WorkItems\Annotation\AnnotationCRUDWorkItem.cs" />
+    <Compile Include="WorkItems\Annotation\AnnotationSimpleCRUDFormView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\Annotation\AnnotationSimpleCRUDFormView.Designer.cs">
+      <DependentUpon>AnnotationSimpleCRUDFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\Annotation\AnnotationLayoutCRUDFormView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\Annotation\AnnotationLayoutCRUDFormView.Designer.cs">
+      <DependentUpon>AnnotationLayoutCRUDFormView.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="Reports\ThemeReportService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ThemeReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ThemeReport.Designer.cs">
+      <DependentUpon>ThemeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\Theme\ThemesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\Theme\ThemesView.Designer.cs">
+      <DependentUpon>ThemesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\Theme\ThemePerFormGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\Theme\ThemePerFormGridView.Designer.cs">
+      <DependentUpon>ThemePerFormGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\EdwardsIndexApp\ThemeCRUDController.cs" />
+    <Compile Include="WorkItems\Theme\ThemeCRUDWorkItem.cs" />
+    <Compile Include="WorkItems\Theme\ThemeSimpleCRUDFormView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\Theme\ThemeSimpleCRUDFormView.Designer.cs">
+      <DependentUpon>ThemeSimpleCRUDFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\Theme\ThemeLayoutCRUDFormView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\Theme\ThemeLayoutCRUDFormView.Designer.cs">
+      <DependentUpon>ThemeLayoutCRUDFormView.cs</DependentUpon>
+    </Compile>
+	
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EdwardsIndexAppModuleInit.cs" />
+    <Compile Include="WorkItems\EdwardsIndexApp\UserInfoView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WorkItems\EdwardsIndexApp\UserInfoView.Designer.cs">
+      <DependentUpon>UserInfoView.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CABDevExpress.ExtensionKit, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Blocks\bin\CABDevExpress.ExtensionKit.dll</HintPath>
+    </Reference>
+    <Reference Include="EdwardsIndexAppCommon, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\EdwardsIndexAppCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="EdwardsIndexAppSecurity, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\EdwardsIndexAppSecurity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.CompositeUI, Version=1.0.51205.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Blocks\bin\Microsoft.Practices.CompositeUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.CompositeUI.WinForms, Version=1.0.51205.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Blocks\bin\Microsoft.Practices.CompositeUI.WinForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GenericDataLayoutCRUDFormView.resx">
+      <DependentUpon>GenericDataLayoutCRUDFormView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\EdwardsIndexApp\AboutEdwardsIndexAppView.resx">
+      <DependentUpon>AboutEdwardsIndexAppView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+	
+    <EmbeddedResource Include="WorkItems\EdwardsIndexApp\StatisticsBarView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>StatisticsBarView.cs</DependentUpon>
+    </EmbeddedResource>
+
+    <EmbeddedResource Include="Reports\IndexMarkerReport.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>IndexMarkerReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\IndexMarker\IndexMarkersView.resx">
+      <DependentUpon>IndexMarkersView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\IndexMarker\IndexMarkerPerFormGridView.resx">
+      <DependentUpon>IndexMarkerPerFormGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\IndexMarker\IndexMarkerSimpleCRUDFormView.resx">
+      <DependentUpon>IndexMarkerSimpleCRUDFormView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\IndexMarker\IndexMarkerLayoutCRUDFormView.resx">
+      <DependentUpon>IndexMarkerLayoutCRUDFormView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+
+    <EmbeddedResource Include="Reports\BookCoordinateReport.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>BookCoordinateReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\BookCoordinate\BookCoordinatesView.resx">
+      <DependentUpon>BookCoordinatesView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\BookCoordinate\BookCoordinatePerFormGridView.resx">
+      <DependentUpon>BookCoordinatePerFormGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\BookCoordinate\BookCoordinateSimpleCRUDFormView.resx">
+      <DependentUpon>BookCoordinateSimpleCRUDFormView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\BookCoordinate\BookCoordinateLayoutCRUDFormView.resx">
+      <DependentUpon>BookCoordinateLayoutCRUDFormView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+
+    <EmbeddedResource Include="Reports\AnnotationReport.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AnnotationReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\Annotation\AnnotationsView.resx">
+      <DependentUpon>AnnotationsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\Annotation\AnnotationPerFormGridView.resx">
+      <DependentUpon>AnnotationPerFormGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\Annotation\AnnotationSimpleCRUDFormView.resx">
+      <DependentUpon>AnnotationSimpleCRUDFormView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\Annotation\AnnotationLayoutCRUDFormView.resx">
+      <DependentUpon>AnnotationLayoutCRUDFormView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+
+    <EmbeddedResource Include="Reports\ThemeReport.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ThemeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\Theme\ThemesView.resx">
+      <DependentUpon>ThemesView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\Theme\ThemePerFormGridView.resx">
+      <DependentUpon>ThemePerFormGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\Theme\ThemeSimpleCRUDFormView.resx">
+      <DependentUpon>ThemeSimpleCRUDFormView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkItems\Theme\ThemeLayoutCRUDFormView.resx">
+      <DependentUpon>ThemeLayoutCRUDFormView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+
+    <EmbeddedResource Include="WorkItems\EdwardsIndexApp\UserInfoView.resx">
+      <DependentUpon>UserInfoView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\statsSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\statsLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\customersLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+
+    <None Include="..\..\..\Images\customersSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\AcceptCustomer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\Edit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\AcceptCustomer16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\AcceptCustomer32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\Edit16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Images\Edit32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
