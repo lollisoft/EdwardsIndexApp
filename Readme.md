@@ -47,6 +47,16 @@ This application was entirely engineered and generated using **lbdmf (Distribute
 * **Batch Printing:** Export lists of generated IDs directly into standard label-printing formats.
 * **Fast-Scan Input:** Keep a single field focused for instant smartphone/hardware scanning.
 
+## The first result after setting up and getting things from tools again working
+Here is the initial UML model I have created:
+
+![UML Class Diagram](Images/EdwardsIndexApp_UML.png)
+
+And here is the running application:
+
+![Running Application Architecture](Images/EdwardsIndexApp_Running.png)
+
+
 ---
 License: Open Source / TBD
 Created by lollisoft ([https://github.com](https://github.com/lollisoft))
