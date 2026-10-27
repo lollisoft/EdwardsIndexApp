@@ -54,7 +54,7 @@ Here is the initial UML model I have created:
 
 And here is the running application:
 
-![Running Application Architecture](Images/Running app.png)
+![Running Application Architecture](Images/Running%20app.png)
 
 
 ---
