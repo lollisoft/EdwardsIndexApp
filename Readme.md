@@ -50,11 +50,11 @@ This application was entirely engineered and generated using **lbdmf (Distribute
 ## The first result after setting up and getting things from tools again working
 Here is the initial UML model I have created:
 
-![UML Class Diagram](Images/EdwardsIndexApp_UML.png)
+![UML Class Diagram](Images/UMLModel.png)
 
 And here is the running application:
 
-![Running Application Architecture](Images/EdwardsIndexApp_Running.png)
+![Running Application Architecture](Images/Running app.png)
 
 
 ---
