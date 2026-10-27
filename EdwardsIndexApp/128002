@@ -1,6 +1,6 @@
 format 224
-"EdwardsIndexApp" // EdwardsIndexApp
-  revision 3
+"Edwards Index App" // Edwards Index App
+  revision 4
   modified_by 2 "Lothar"
   // class settings
   
@@ -30,6 +30,15 @@ format 224
   activitydiagramsettings
    end
   
+  ncouples 8
+  key "UpgradeCode" value "E96C4AB2-1DF6-4DA3-99DD-DAB7517334B0"
+  key "ProductVersion" value "1.0.0.0"
+  key "ProductCode" value "73C62F30-3C53-46DF-B892-405DB349402F"
+  key "DataStoreBaseAddress" value "net.tcp://cloud.lollisoft.de:49383"
+  key "StsBaseAddress" value "net.tcp://cloud.lollisoft.de:8000"
+  key "LoggingStrategy" value "client"
+  key "LoggingNamespaceName" value "Lollisoft"
+  key "LoggingImplementation" value "client"
   classview 128002 "Edwards Index App"
     
     classdiagramsettings member_max_width 0 end
@@ -50,15 +59,6 @@ format 224
     
     activitydiagramsettings
      end
-    ncouples 8
-    key "UpgradeCode" value "E96C4AB2-1DF6-4DA3-99DD-DAB7517334B0"
-    key "ProductVersion" value "1.0.0.0"
-    key "ProductCode" value "73C62F30-3C53-46DF-B892-405DB349402F"
-    key "DataStoreBaseAddress" value "net.tcp://cloud.lollisoft.de:49383"
-    key "StsBaseAddress" value "net.tcp://cloud.lollisoft.de:8000"
-    key "LoggingStrategy" value "client"
-    key "LoggingNamespaceName" value "Lollisoft"
-    key "LoggingImplementation" value "client"
     classdiagram 128002 "Main Elements"
       classdiagramsettings draw_all_relations no member_max_width 0 end
       size A4

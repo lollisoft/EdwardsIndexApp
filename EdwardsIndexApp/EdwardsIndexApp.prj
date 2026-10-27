@@ -1,6 +1,6 @@
 format 224
 "EdwardsIndexApp"
-  revision 2
+  revision 3
   modified_by 2 "Lothar"
 
 
@@ -49,5 +49,5 @@ format 224
   key "gxmi gen views" value "no"
   key "gxmi encoding" value "windows-1252"
   key "gxmi taggedvalue" value "1"
-  package_ref 128002 // EdwardsIndexApp
+  package_ref 128002 // Edwards Index App
 end
