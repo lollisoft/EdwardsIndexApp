@@ -1,4 +1,1 @@
-//
-//  EdwardsIndexAI.xcodeproj project file generated for Xcode 10.3 compatibility.
-//  This is a UIKit-based version of the SwiftUI prototype, adapted to older Apple toolchains.
-//
+Updated the UIKit app entry point so it can open as a normal Xcode iOS app, and added an Xcode project file to the branch for Xcode 10.3 compatibility.
