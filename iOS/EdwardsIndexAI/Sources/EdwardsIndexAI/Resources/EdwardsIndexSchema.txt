@@ -1,0 +1,31 @@
+# EdwardsIndexAI
+
+This folder contains a SwiftUI iOS prototype for an AI-driven study app inspired by the UML model in `EdwardsIndexApp.xmi`.
+
+## Local persistence design
+
+The app uses a local SQLite database instead of an in-memory or JSON-only model. This is a good production-oriented step toward a future generator pipeline while still keeping the app lightweight and easy to reason about.
+
+The persistence layer is intentionally schema-aware and stored in a text-based definition file so it can be used later by a code generator or transformation step. The text schema lives here:
+
+- `Sources/EdwardsIndexAI/Resources/EdwardsIndexSchema.txt`
+
+The actual SQLite file is stored locally on-device in the app documents directory under:
+
+- `EdwardsIndexAI.sqlite`
+
+## Included concepts
+
+- `IndexMarker`: alphanumeric reference tags and creation dates
+- `BookCoordinate`: book, chapter, verse, page and subject mapping
+- `Annotation`: free-form note text and timestamps
+- `Theme`: thematic grouping and category classification
+
+## Build
+
+```bash
+cd iOS/EdwardsIndexAI
+swift build
+```
+
+Open the package in Xcode 15+ to run the SwiftUI app.
